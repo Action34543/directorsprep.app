@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Installing on Windows — Director's Prep</title>
+  <link rel="icon" href="favicon.ico">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:   #2563eb;
+      --accent-h: #1d4ed8;
+      --dark:     #1a1a1a;
+      --mid:      #374151;
+      --muted:    #6b7280;
+      --light:    #f9fafb;
+      --white:    #ffffff;
+      --border:   #e5e7eb;
+      --radius:   10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 17px; color: var(--dark);
+    }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 6px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-h); }
+
+    /* ── Main ── */
+    .hero {
+      text-align: center;
+      padding: 64px 5% 48px;
+      background: linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%);
+    }
+    .hero h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+    .hero p { font-size: 17px; color: var(--muted); max-width: 500px; margin: 0 auto; }
+
+    .download-starting {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 28px;
+      font-size: 14px; color: #16a34a; font-weight: 600;
+    }
+    .download-starting svg { width: 18px; height: 18px; stroke: #16a34a; }
+
+    /* ── Steps ── */
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 56px 5% 96px;
+    }
+
+    .step-group { margin-bottom: 48px; }
+    .step-group h2 {
+      font-size: 19px; font-weight: 700;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step {
+      display: flex; gap: 16px;
+      margin-bottom: 24px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px;
+      margin-top: 2px;
+    }
+    .step-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .step-body p  { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+    .callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 14px; color: #92400e;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+    .callout strong { color: #78350f; }
+
+    .screenshot-placeholder {
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 10px;
+      font-size: 13px; color: var(--muted);
+      font-family: monospace;
+      line-height: 1.8;
+    }
+    .tag {
+      display: inline-block;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 1px 8px;
+      font-size: 13px;
+      font-family: monospace;
+      color: var(--dark);
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 5%;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 14px; color: var(--muted);
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--dark); }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="assets/icon.png" alt="">
+    Director's Prep
+  </a>
+  <a href="https://directorsprep.lemonsqueezy.com/checkout/buy/7f36f829-7d6e-410a-9e09-30d88c0e17c9" class="btn btn-primary lemonsqueezy-button">
+    Buy a License
+  </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Installing Director's Prep on Windows</h1>
+  <p>Your download has started. While it downloads, here's how to get past Windows' security warning.</p>
+  <div class="download-starting">
+    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+      <polyline points="7 10 12 15 17 10"/>
+      <line x1="12" y1="15" x2="12" y2="3"/>
+    </svg>
+    Your download is starting automatically…
+  </div>
+</section>
+
+<!-- Instructions -->
+<div class="content">
+
+  <div class="step-group">
+    <h2>Why does Windows show a warning?</h2>
+    <p style="font-size:14px;color:var(--muted);line-height:1.6;">
+      Windows shows a "Windows protected your PC" message for apps that aren't yet digitally signed by Microsoft. Director's Prep is safe — this is a standard hurdle for independent software. Here's how to get past it.
+    </p>
+  </div>
+
+  <div class="step-group">
+    <h2>Step 1 — Run the installer</h2>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Open the downloaded file</h3>
+        <p>Find <span class="tag">Director.s.Prep.Setup.exe</span> in your Downloads folder and double-click it.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Windows SmartScreen appears</h3>
+        <p>You'll see a blue screen saying <strong>"Windows protected your PC"</strong>. Don't click Close.</p>
+        <div class="screenshot-placeholder">
+          🛡️ Windows protected your PC<br>
+          Microsoft Defender SmartScreen prevented an unrecognised app from starting.<br>
+          <br>
+          [Run anyway]&nbsp;&nbsp;[Don't run]
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Click "More info"</h3>
+        <p>Click the <span class="tag">More info</span> link in the top-left of the blue screen. Two buttons will appear at the bottom.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Click "Run anyway"</h3>
+        <p>Click <span class="tag">Run anyway</span> and the installer will launch normally.</p>
+        <div class="callout">
+          <strong>Is this safe?</strong> Yes. Director's Prep is open source — you can inspect the full source code at <a href="https://github.com/Action34543/directors-prep" target="_blank" style="color:#92400e;text-decoration:underline;">github.com/Action34543/directors-prep</a>. The warning appears because we're an independent developer, not because the app is harmful.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="step-group">
+    <h2>Step 2 — Complete the installation</h2>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Follow the installer</h3>
+        <p>Choose your install location and click <span class="tag">Install</span>. The app will be added to your Start menu and desktop.</p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Launch Director's Prep</h3>
+        <p>Open it from your desktop or Start menu. Your 14-day free trial begins on first launch.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding-top:16px;">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">Having trouble? Get in touch and we'll help.</p>
+    <a href="mailto:hello@directorsprep.app" class="btn btn-primary">Contact Support</a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <span>© 2026 Julian Kemp. All rights reserved.</span>
+  <div style="display:flex; gap: 20px;">
+    <a href="mailto:hello@directorsprep.app">Contact</a>
+    <a href="/terms.html">Terms &amp; Conditions</a>
+    <a href="/eula.html">EULA</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+
+<!-- Auto-trigger the download -->
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const url = 'https://github.com/Action34543/directors-prep/releases/download/v1.0.13/Director.s.Prep.Setup.1.0.13.exe';
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  });
+</script>
+
+</body>
+</html>
