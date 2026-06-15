@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download — Director's Prep</title>
+  <meta name="description" content="Download Director's Prep for Windows or Mac. Free 14-day trial, no account required.">
+  <link rel="icon" href="favicon.ico">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:   #2563eb;
+      --accent-h: #1d4ed8;
+      --dark:     #1a1a1a;
+      --mid:      #374151;
+      --muted:    #6b7280;
+      --light:    #f9fafb;
+      --white:    #ffffff;
+      --border:   #e5e7eb;
+      --radius:   10px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 64px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; font-size: 17px; color: var(--dark);
+    }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; font-size: 15px; color: var(--mid); }
+    .nav-links a:hover { color: var(--dark); }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 600; cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-h); }
+    .btn-ghost { color: var(--mid); border: 1px solid var(--border); }
+    .btn-ghost:hover { color: var(--dark); border-color: #9ca3af; }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      padding: 72px 5% 64px;
+      background: linear-gradient(180deg, #f0f6ff 0%, #ffffff 100%);
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 800; letter-spacing: -1px;
+      line-height: 1.1; color: var(--dark);
+      margin-bottom: 14px;
+    }
+    .hero p {
+      font-size: 18px; color: var(--muted);
+      max-width: 480px; margin: 0 auto 48px;
+    }
+
+    /* ── Download cards ── */
+    .cards {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 5% 80px;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 240px;
+      max-width: 280px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px 28px;
+      text-align: center;
+      background: var(--white);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+      transform: translateY(-3px);
+    }
+
+    .card-icon {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-icon svg { width: 28px; height: 28px; }
+
+    .card-icon.windows { background: #eff6ff; }
+    .card-icon.windows svg { stroke: var(--accent); }
+    .card-icon.mac-silicon { background: #f0fdf4; }
+    .card-icon.mac-silicon svg { stroke: #16a34a; }
+    .card-icon.mac-intel { background: #faf5ff; }
+    .card-icon.mac-intel svg { stroke: #7c3aed; }
+
+    .card h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .card .sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; line-height: 1.4; }
+
+    .card .dl-btn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: var(--radius);
+      font-size: 15px; font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .card .dl-btn:active { transform: scale(0.97); }
+    .card .dl-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .dl-btn.windows  { background: var(--accent); color: #fff; }
+    .dl-btn.windows:hover  { background: var(--accent-h); }
+    .dl-btn.mac-silicon { background: #16a34a; color: #fff; }
+    .dl-btn.mac-silicon:hover { background: #15803d; }
+    .dl-btn.mac-intel { background: #7c3aed; color: #fff; }
+    .dl-btn.mac-intel:hover { background: #6d28d9; }
+
+    .card .version { margin-top: 12px; font-size: 12px; color: #9ca3af; }
+
+    /* ── Which Mac section ── */
+    .which-mac {
+      max-width: 560px;
+      margin: 0 auto 80px;
+      padding: 24px 28px;
+      background: var(--light);
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .which-mac h3 { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+    .which-mac p  { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .which-mac strong { color: var(--dark); }
+
+    /* ── Buy license ── */
+    .buy-block {
+      text-align: center;
+      padding: 0 5% 96px;
+    }
+    .buy-block p { font-size: 15px; color: var(--muted); margin-bottom: 16px; }
+
+    /* ── Footer ── */
+    footer {
+      padding: 32px 5%;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 14px; color: var(--muted);
+      flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--dark); }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; }
+      .cards { flex-direction: column; align-items: center; }
+      .card { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="/">
+    <img src="assets/icon.png" alt="">
+    Director's Prep
+  </a>
+  <div class="nav-links">
+    <a href="/#features">Features</a>
+    <a href="/#how-it-works">How it works</a>
+  </div>
+  <a href="https://directorsprep.lemonsqueezy.com/checkout/buy/7f36f829-7d6e-410a-9e09-30d88c0e17c9" class="btn btn-primary lemonsqueezy-button">
+    Buy a License
+  </a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <h1>Download Director's Prep</h1>
+  <p>Free 14-day trial. No account required. Pick your platform below.</p>
+</section>
+
+<!-- Download cards -->
+<div class="cards">
+
+  <!-- Windows -->
+  <div class="card">
+    <div class="card-icon windows">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="8" height="8"/><rect x="13" y="3" width="8" height="8"/>
+        <rect x="3" y="13" width="8" height="8"/><rect x="13" y="13" width="8" height="8"/>
+      </svg>
+    </div>
+    <h2>Windows</h2>
+    <p class="sub">Windows 10 or later<br>64-bit installer</p>
+    <a href="https://github.com/Action34543/directors-prep/releases/download/v1.0.9/Director.s.Prep.Setup.1.0.9.exe"
+       class="dl-btn windows">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download for Windows
+    </a>
+    <div class="version">v1.0.9 · .exe installer</div>
+  </div>
+
+  <!-- Mac Apple Silicon -->
+  <div class="card">
+    <div class="card-icon mac-silicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+        <path d="M12 8v4l3 3"/>
+      </svg>
+    </div>
+    <h2>Mac — Apple Silicon</h2>
+    <p class="sub">M1, M2, M3, M4<br>macOS 11 or later</p>
+    <a href="https://github.com/Action34543/directors-prep/releases/download/v1.0.9/Director.s.Prep-1.0.9-arm64.dmg"
+       class="dl-btn mac-silicon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download for Apple Silicon
+    </a>
+    <div class="version">v1.0.9 · arm64 .dmg</div>
+  </div>
+
+  <!-- Mac Intel -->
+  <div class="card">
+    <div class="card-icon mac-intel">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="4" width="16" height="16" rx="2"/>
+        <rect x="9" y="9" width="6" height="6"/>
+        <line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/>
+        <line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/>
+        <line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/>
+        <line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/>
+      </svg>
+    </div>
+    <h2>Mac — Intel</h2>
+    <p class="sub">Older Intel-based Macs<br>macOS 10.15 or later</p>
+    <a href="https://github.com/Action34543/directors-prep/releases/download/v1.0.9/Director.s.Prep-1.0.9.dmg"
+       class="dl-btn mac-intel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download for Intel Mac
+    </a>
+    <div class="version">v1.0.9 · x64 .dmg</div>
+  </div>
+
+</div>
+
+<!-- Which Mac am I? -->
+<div class="which-mac" style="margin-left:auto;margin-right:auto;margin-bottom:64px;max-width:560px;padding:24px 28px;">
+  <h3>Not sure which Mac you have?</h3>
+  <p>Click the <strong>Apple menu</strong> () in the top-left corner of your screen and choose <strong>About This Mac</strong>. If it says <strong>Apple M1 / M2 / M3 / M4</strong>, download Apple Silicon. If it says <strong>Intel</strong>, download the Intel version.</p>
+</div>
+
+<!-- Already bought? -->
+<div class="buy-block">
+  <p>Trial expired? Unlock Director's Prep permanently with a one-time license.</p>
+  <a href="https://directorsprep.lemonsqueezy.com/checkout/buy/7f36f829-7d6e-410a-9e09-30d88c0e17c9"
+     class="btn btn-primary lemonsqueezy-button" style="font-size:16px;padding:13px 28px;">
+    Buy a License — £49.99
+  </a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <span>© 2026 Julian Kemp. All rights reserved.</span>
+  <div style="display:flex; gap: 20px;">
+    <a href="https://github.com/Action34543/directors-prep" target="_blank">GitHub</a>
+    <a href="mailto:hello@directorsprep.app">Contact</a>
+    <a href="/terms.html">Terms &amp; Conditions</a>
+    <a href="/eula.html">EULA</a>
+    <a href="/privacy.html">Privacy</a>
+  </div>
+</footer>
+
+<script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+
+</body>
+</html>
