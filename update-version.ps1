@@ -1,5 +1,5 @@
 # update-version.ps1
-# Usage: .\update-version.ps1 1.0.10
+# Usage: .\update-version.ps1 1.0.14
 
 param(
   [Parameter(Mandatory)][string]$NewVersion
@@ -8,11 +8,12 @@ param(
 $file = "$PSScriptRoot\download.html"
 $content = Get-Content $file -Raw
 
-# Replace all occurrences of the old version pattern
+# Replace all version references
 $updated = $content -replace 'v\d+\.\d+\.\d+/', "v$NewVersion/" `
                     -replace '-\d+\.\d+\.\d+-', "-$NewVersion-" `
                     -replace '-\d+\.\d+\.\d+\.dmg', "-$NewVersion.dmg" `
-                    -replace 'Setup\.\d+\.\d+\.\d+\.exe', "Setup.$NewVersion.exe"
+                    -replace 'Setup\.\d+\.\d+\.\d+\.exe', "Setup.$NewVersion.exe" `
+                    -replace 'v\d+\.\d+\.\d+ ·', "v$NewVersion ·"
 
 Set-Content $file $updated -NoNewline
 
