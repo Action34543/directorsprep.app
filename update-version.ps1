@@ -1,5 +1,5 @@
 # update-version.ps1
-# Usage: .\update-version.ps1 1.0.14
+# Usage: .\update-version.ps1 1.0.17
 
 param(
   [Parameter(Mandatory)][string]$NewVersion
@@ -7,11 +7,12 @@ param(
 
 function Update-File($filePath) {
   $content = Get-Content $filePath -Raw
-  $updated = $content -replace 'v\d+\.\d+\.\d+/', "v$NewVersion/" `
-                      -replace '-\d+\.\d+\.\d+-', "-$NewVersion-" `
-                      -replace '-\d+\.\d+\.\d+\.dmg', "-$NewVersion.dmg" `
-                      -replace 'Setup\.\d+\.\d+\.\d+\.exe', "Setup.$NewVersion.exe" `
-                      -replace 'v\d+\.\d+\.\d+ ·', "v$NewVersion ·"
+  $updated = $content `
+    -replace 'v\d+\.\d+\.\d+/', "v$NewVersion/" `
+    -replace 'directors-prep-\d+\.\d+\.\d+-arm64\.dmg', "directors-prep-$NewVersion-arm64.dmg" `
+    -replace 'directors-prep-\d+\.\d+\.\d+-x64\.dmg', "directors-prep-$NewVersion-x64.dmg" `
+    -replace 'directors-prep-setup-\d+\.\d+\.\d+\.exe', "directors-prep-setup-$NewVersion.exe" `
+    -replace 'v\d+\.\d+\.\d+ ·', "v$NewVersion ·"
   Set-Content $filePath $updated -NoNewline
   Write-Host "Updated $([System.IO.Path]::GetFileName($filePath))" -ForegroundColor Green
 }
